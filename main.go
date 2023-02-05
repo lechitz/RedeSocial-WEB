@@ -6,11 +6,13 @@ import (
 	"net/http"
 	"webapp/src/Router"
 	"webapp/src/config"
+	"webapp/src/cookies"
 	"webapp/src/utils"
 )
 
 func main() {
 	config.Carregar()
+	cookies.Configurar()
 	utils.CarregarTemplates()
 	r := Router.Gerar()
 
