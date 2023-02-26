@@ -4,7 +4,7 @@
 {{ end }}
 
 {{ define "editar" }}
-    <a href="/editar" style="text-decoration: none; color: #2b3035">
+    <a href="/publicacoes/{{ .ID }}/editar" style="text-decoration: none; color: #2b3035">
         <i class="fa-regular fa-pen-to-square ps-3"></i>
     </a>
 {{ end }}
@@ -31,8 +31,8 @@
         {{ template "cabecalho-publicacao" . }}
         <p>
             {{ template "curtidas" . }}
-            {{ template "editar" }}
-            {{ template "deletar" }}
+            {{ template "editar" . }}
+            {{ template "deletar" . }}
 
         </p>
     </div>
