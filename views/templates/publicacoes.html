@@ -16,9 +16,9 @@
 
 
 {{ define "cabecalho-publicacao" }}
+    <a href="#">@{{ .AutorNick }} · {{ .CriadaEm.Format "02/01/2006" }} </a>
     <h1 class="display-6"> {{ .Titulo }} </h1>
     <p class="lead"> {{ .Conteudo }} </p>
-    <a href="#"> {{ .AutorNick }} · {{ .CriadaEm.Format "02/01/2006" }} </a>
     <br>
     <br>
     <hr class="my-4">
