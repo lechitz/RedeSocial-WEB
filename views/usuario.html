@@ -46,7 +46,7 @@
 
                     <a href="#" class="card-link">
                         {{ if $SeguidoPeloUsuarioLogado }}
-                            <button id="parar-de-seguir" class="btn btn-info" data-usuario-id="{{ .Usuario.ID }}">
+                            <button id="parardeseguir" class="btn btn-info bg-body-secondary" data-usuario-id="{{ .Usuario.ID }}">
                                 Parar de Seguir
                             </button>
 
@@ -84,7 +84,9 @@
 
 {{ template "rodape" }}
 {{ template "scripts" }}
+
 <script src="/assets/js/publicacoes.js"></script>
+<script src="/assets/js/usuario.js"></script>
 </body>
 
 </html>
