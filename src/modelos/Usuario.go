@@ -10,13 +10,13 @@ import (
 	"webapp/src/requisicoes"
 )
 
-//Usuario represente uma pessoa utilizando a rede social
+// Usuario representa uma pessoa utilizando a rede social
 type Usuario struct {
 	ID          uint64       `json:"id"`
 	Nome        string       `json:"nome"`
 	Email       string       `json:"email"`
 	Nick        string       `json:"nick"`
-	CriadoEm    time.Time    `json:"criado_em"`
+	CriadoEm    time.Time    `json:"criadoEm"`
 	Seguidores  []Usuario    `json:"seguidores"`
 	Seguindo    []Usuario    `json:"seguindo"`
 	Publicacoes []Publicacao `json:"publicacoes"`
@@ -49,6 +49,7 @@ func BuscarUsuarioCompleto(usuarioID uint64, r *http.Request) (Usuario, error) {
 			}
 
 			usuario = usuarioCarregado
+
 		case seguidoresCarregados := <-canalSeguidores:
 			if seguidoresCarregados == nil {
 				return Usuario{}, errors.New("Erro ao buscar seguidores")
@@ -63,12 +64,12 @@ func BuscarUsuarioCompleto(usuarioID uint64, r *http.Request) (Usuario, error) {
 
 			seguindo = seguindoCarregados
 
-			case publicacoesCarregadas := <-canalPublicacoes:
-				if publicacoesCarregadas == nil {
-					return Usuario{}, errors.New("Erro ao buscar as publicações")
-				}
+		case publicacoesCarregadas := <-canalPublicacoes:
+			if publicacoesCarregadas == nil {
+				return Usuario{}, errors.New("Erro ao buscar as publicações")
+			}
 
-				publicacoes = publicacoesCarregadas
+			publicacoes = publicacoesCarregadas
 		}
 	}
 
@@ -77,7 +78,6 @@ func BuscarUsuarioCompleto(usuarioID uint64, r *http.Request) (Usuario, error) {
 	usuario.Publicacoes = publicacoes
 
 	return usuario, nil
-
 }
 
 //BuscarDadosDoUsuario chama a API para buscar os dados base do usuário
@@ -140,7 +140,7 @@ func BuscarSeguindo(canal chan<- []Usuario, usuarioID uint64, r *http.Request) {
 	}
 
 	if seguindo == nil {
-		canal<- make([]Usuario, 0)
+		canal <- make([]Usuario, 0)
 		return
 	}
 
@@ -164,7 +164,7 @@ func BuscarPublicacoes(canal chan<- []Publicacao, usuarioID uint64, r *http.Requ
 	}
 
 	if publicacoes == nil {
-		canal<- make([]Publicacao, 0)
+		canal <- make([]Publicacao, 0)
 		return
 	}
 
