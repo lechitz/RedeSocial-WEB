@@ -60,4 +60,16 @@ var rotasUsuarios = []Rota {
 		Funcao: controllers.EditarUsuario,
 		RequerAutenticacao: true,
 	},
+	{
+		URI: "/atualizarsenha",
+		Metodo: http.MethodGet,
+		Funcao: controllers.CarregarPaginaDeAtualizacaoDeSenha,
+		RequerAutenticacao: true,
+	},
+	{
+		URI: "/atualizarsenha",
+		Metodo: http.MethodPost,
+		Funcao: controllers.AtualizarSenha,
+		RequerAutenticacao: true,
+	},
 }
